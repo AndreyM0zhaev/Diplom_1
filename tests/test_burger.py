@@ -28,4 +28,4 @@ class TestBurger:
         burger.add_ingredient(mock_ingredient1)
         burger.remove_ingredient(0)
         assert mock_ingredient0 not in burger.ingredients, "Ингредиент не был удален"
-        assert mock_ingredient1 in burger.ingredients, "Неправильный ингредиент был удален"
+        assert mock_ingredient1 in burger.ingredients, "Был удален необходимый ингредиент"
