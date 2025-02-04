@@ -1,5 +1,4 @@
 from unittest.mock import Mock
-
 from praktikum.burger import Burger
 from praktikum.bun import Bun
 
