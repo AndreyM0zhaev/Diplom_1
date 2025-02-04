@@ -1,5 +1,4 @@
 from praktikum.database import Database
-from praktikum.bun import Bun
 from praktikum.ingredient import Ingredient
 
 
