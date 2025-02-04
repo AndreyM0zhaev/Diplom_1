@@ -14,7 +14,6 @@ class TestDatabase:
         database = Database()
         ingredients = database.available_ingredients()
 
-        # Проверяем, что список ингредиентов не пустой
         assert len(ingredients) > 0, "Список ингредиентов пустой"
         for ingredient in ingredients:
             assert isinstance(ingredient, Ingredient), "Элемент списка не является ингредиентом"
