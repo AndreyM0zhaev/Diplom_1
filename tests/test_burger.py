@@ -2,8 +2,6 @@ from unittest.mock import Mock
 
 from praktikum.burger import Burger
 from praktikum.bun import Bun
-from praktikum.ingredient_types import IngredientTypes
-from praktikum.database import Database
 
 
 
@@ -58,3 +56,34 @@ class TestBurger:
         burger.add_ingredient(mock_ingredient0)
         burger.add_ingredient(mock_ingredient1)
         assert burger.get_price() == 2175, "Неверная стоимость бургера"
+
+
+    def test_get_receipt(self):
+        burger = Burger()
+        mock_bun = Mock()
+        mock_bun.get_name.return_value = "Флюоресцентная булка R2-D3"
+        mock_bun.get_price.return_value = 988
+
+        mock_ingredient0 = Mock()
+        mock_ingredient0.get_type.return_value = "sauce"
+        mock_ingredient0.get_name.return_value = "жгучий перчик"
+        mock_ingredient0.get_price.return_value = 88
+
+        mock_ingredient1 = Mock()
+        mock_ingredient1.get_type.return_value = "filling"
+        mock_ingredient1.get_name.return_value = "эктоплазма"
+        mock_ingredient1.get_price.return_value = 111
+
+        burger.set_buns(mock_bun)
+        burger.add_ingredient(mock_ingredient0)
+        burger.add_ingredient(mock_ingredient1)
+
+        expected_receipt = (
+            "(==== Флюоресцентная булка R2-D3 ====)\n"
+            "= sauce жгучий перчик =\n"
+            "= filling эктоплазма =\n"
+            "(==== Флюоресцентная булка R2-D3 ====)\n\n"
+            "Price: 2175"
+        )
+
+        assert burger.get_receipt() == expected_receipt, "Ошибка в чеке"
