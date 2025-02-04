@@ -44,3 +44,17 @@ class TestBurger:
         burger.move_ingredient(0, 1)
         assert burger.ingredients[0] == mock_ingredient1, "Первый ингредиент не на своем месте"
         assert burger.ingredients[1] == mock_ingredient0, "Ингредиент не был перемещен"
+
+
+    def test_get_price(self):
+        burger = Burger()
+        mock_bun = Mock()
+        mock_bun.get_price.return_value = 988
+        mock_ingredient0 = Mock()
+        mock_ingredient0.get_price.return_value = 88
+        mock_ingredient1 = Mock()
+        mock_ingredient1.get_price.return_value = 111
+        burger.set_buns(mock_bun)
+        burger.add_ingredient(mock_ingredient0)
+        burger.add_ingredient(mock_ingredient1)
+        assert burger.get_price() == 2175, "Неверная стоимость бургера"
